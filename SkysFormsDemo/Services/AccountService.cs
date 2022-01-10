@@ -15,4 +15,14 @@ public class AccountService : IAccountService
     {
         return _context.Accounts.ToList();
     }
+
+    public void Update(Account person)
+    {
+        _context.SaveChanges();
+    }
+
+    public Account GetAccount(int id)
+    {
+        return _context.Accounts.First(e => e.Id == id);
+    }
 }
