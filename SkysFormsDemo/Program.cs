@@ -12,6 +12,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddTransient<DataInitializer>();
 builder.Services.AddTransient<IPersonService,PersonService>();
+builder.Services.AddTransient<IAccountService, AccountService>();
 var app = builder.Build();
 
 
