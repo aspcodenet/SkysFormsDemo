@@ -1,0 +1,24 @@
+﻿@page
+@model SkysFormsDemo.Pages.Account.DepositModel
+@{
+}
+
+
+<form method="post">
+    
+    <div class="form-group">
+        <label asp-for="Amount">Belopp</label>
+        <input class="form-control" asp-for="Amount" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DateWhen">Datum för dragning</label>
+        <input class="form-control" asp-for="DateWhen" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Comment">Kommentar</label>
+        <input class="form-control" asp-for="Comment" />
+    </div>
+    <button type="submit" class="btn">Deposit</button>
+</form>
