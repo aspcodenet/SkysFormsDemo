@@ -76,7 +76,6 @@ namespace SkysFormsDemo.Pages.Person
                     Email = Email,
                     City = City,
                     Country = _context.Countries.First(e=>e.Id == CountryId),
-                    //CountryCode = CountryCode, //TODO
                     Salary = Salary,
                     Name = Name,
                     PostalCode = PostalCode,
