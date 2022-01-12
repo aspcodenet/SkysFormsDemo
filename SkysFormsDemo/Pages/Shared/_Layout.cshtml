@@ -16,7 +16,11 @@
                 <input type=text placeholder="search">
                 <i class="bx bx-search"></i>
             </div>
-            <div class="header__avatar">Login etc etc</div>
+            <div class="header__avatar">
+                
+                <partial name="_LoginPartial"/>
+
+            </div>
           </header>
           <aside class="sidenav">
               <div class="sidenav__logo">
@@ -60,6 +64,8 @@
             <div class="footer__signature">Made with love by Stefan Holmberg</div>
         </footer>      
     </div>
+
+@await RenderSectionAsync("Scripts", required: false)
 
 </body>
 </html>
