@@ -22,6 +22,8 @@ public class Person
 
     public decimal Salary { get; set; }
 
+    public PlayerPosition Position { get; set; }
+
     public int CarCount { get; set; } //Krysta fram ett int-usecase
     [StringLength(50)]
     public string City { get; set; }

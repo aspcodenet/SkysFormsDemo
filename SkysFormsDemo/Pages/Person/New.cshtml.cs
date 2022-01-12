@@ -40,9 +40,12 @@ namespace SkysFormsDemo.Pages.Person
         [EmailAddress]
         public string Email { get; set; }
 
+        [Range(1,10000, ErrorMessage = "Välj en country tack")]
         public int CountryId { get; set; }
         public List<SelectListItem> Countries { get; set; }
 
+        public PlayerPosition Position { get; set; }
+        public List<SelectListItem> PlayerPositions { get; set; }
 
         public NewModel(ApplicationDbContext context)
         {
@@ -52,7 +55,18 @@ namespace SkysFormsDemo.Pages.Person
         public void OnGet()
         {
             FillCountryList();
+            FillPositionsList();
 
+        }
+
+        private void FillPositionsList()
+        {
+            PlayerPositions = Enum.GetValues<PlayerPosition>()
+                .Select(r => new SelectListItem
+                {
+                    Value = r.ToString(),
+                    Text = r.ToString()
+                }).ToList();
         }
 
         private void FillCountryList()
@@ -62,6 +76,11 @@ namespace SkysFormsDemo.Pages.Person
                 Text = e.Name,
                 Value = e.Id.ToString()
             }).ToList();
+            Countries.Insert(0,new SelectListItem
+            {
+                Text = "Var god välj...",
+                Value = "0"
+            });
         }
 
 
