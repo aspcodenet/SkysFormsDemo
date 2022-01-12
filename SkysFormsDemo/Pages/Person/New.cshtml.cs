@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -9,6 +10,7 @@ using SkysFormsDemo.Services;
 
 namespace SkysFormsDemo.Pages.Person
 {
+    [Authorize(Roles="Admin")]
     [BindProperties]
     public class NewModel : PageModel
     {

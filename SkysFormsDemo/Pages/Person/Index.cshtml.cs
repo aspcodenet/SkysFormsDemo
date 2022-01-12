@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SkysFormsDemo.Services;
 
 namespace SkysFormsDemo.Pages.Person
 {
+    [Authorize(Roles="Admin,Customer")]
     public class IndexModel : PageModel
     {
         private readonly IPersonService _personService;
