@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Net.Http.Headers;
 using SkysFormsDemo.Data;
@@ -23,7 +24,6 @@ namespace SkysFormsDemo.Pages.Person
         [StringLength(10)]
         public string PostalCode { get; set; }
 
-        [StringLength(2)] public string CountryCode { get; set; }
 
         [Range(0, 100000, ErrorMessage = "Skriv ett tal mellan 0 och 100000")]
         public decimal Salary { get; set; }
@@ -40,6 +40,10 @@ namespace SkysFormsDemo.Pages.Person
         [EmailAddress]
         public string Email { get; set; }
 
+        public int CountryId { get; set; }
+        public List<SelectListItem> Countries { get; set; }
+
+
         public NewModel(ApplicationDbContext context)
         {
             _context = context;
@@ -47,8 +51,19 @@ namespace SkysFormsDemo.Pages.Person
 
         public void OnGet()
         {
+            FillCountryList();
 
         }
+
+        private void FillCountryList()
+        {
+            Countries = _context.Countries.Select(e => new SelectListItem
+            {
+                Text = e.Name,
+                Value = e.Id.ToString()
+            }).ToList();
+        }
+
 
         public IActionResult OnPost()
         {
@@ -60,6 +75,7 @@ namespace SkysFormsDemo.Pages.Person
                     StreetAddress = StreetAddress,
                     Email = Email,
                     City = City,
+                    Country = _context.Countries.First(e=>e.Id == CountryId),
                     //CountryCode = CountryCode, //TODO
                     Salary = Salary,
                     Name = Name,
@@ -72,6 +88,7 @@ namespace SkysFormsDemo.Pages.Person
                 return RedirectToPage("Index");
             }
 
+            FillCountryList();
             return Page();
         }
 

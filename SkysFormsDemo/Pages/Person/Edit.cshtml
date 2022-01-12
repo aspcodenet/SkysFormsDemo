@@ -37,8 +37,10 @@
             
             
             <div class="form-group">
-                <label asp-for="CountryCode">Country code</label>
-                <input class="form-control" asp-for="CountryCode">
+                <label asp-for="CountryId">Country </label>
+                <select asp-for="CountryId" asp-items="@Model.Countries" >
+
+                </select>
                 <span asp-validation-for="CountryCode" class="field-validation-error"></span>
             </div>
             

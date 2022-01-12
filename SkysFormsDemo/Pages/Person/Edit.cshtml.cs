@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Net.Http.Headers;
 using SkysFormsDemo.Data;
@@ -23,7 +24,6 @@ namespace SkysFormsDemo.Pages.Person
         [StringLength(10)]
         public string PostalCode { get; set; }
 
-        [StringLength(2)] public string CountryCode { get; set; }
 
         [Range(0, 100000, ErrorMessage = "Skriv ett tal mellan 0 och 100000")]
         public decimal Salary { get; set; }
@@ -40,6 +40,9 @@ namespace SkysFormsDemo.Pages.Person
         [EmailAddress]
         public string Email { get; set; }
 
+        public int CountryId { get; set; }
+        public List<SelectListItem> Countries { get; set; }
+
 
         public EditModel(ApplicationDbContext context)
         {
@@ -48,7 +51,10 @@ namespace SkysFormsDemo.Pages.Person
 
         public void OnGet(int personId)
         {
-            var person = _context.Person.First(u=>u.Id == personId );
+            var person = _context.Person
+                .Include(e=>e.Country)
+                .First(u=>u.Id == personId );
+
             Name = person.Name;
             CarCount = person.CarCount;
             City = person.City;
@@ -57,6 +63,17 @@ namespace SkysFormsDemo.Pages.Person
             PostalCode = person.PostalCode;
             Salary = person.Salary;
             StreetAddress = person.StreetAddress;
+            CountryId = person.Country.Id;
+            FillCountryList();
+        }
+
+        private void FillCountryList()
+        {
+            Countries = _context.Countries.Select(e => new SelectListItem
+            {
+                Text = e.Name,
+                Value = e.Id.ToString()
+            }).ToList();
         }
 
 
@@ -78,6 +95,7 @@ namespace SkysFormsDemo.Pages.Person
                 return RedirectToPage("Index");
             }
 
+            FillCountryList();
             return Page();
         }
 

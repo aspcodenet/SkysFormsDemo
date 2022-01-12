@@ -16,6 +16,22 @@ public class DataInitializer
     {
         _dbContext.Database.Migrate();
         SeedAccounts();
+        SeedCountries();
+    }
+
+    private void SeedCountries()
+    {
+        AddCountryIfNotExists("FI", "Finland");
+        AddCountryIfNotExists("SE", "Sverige");
+        AddCountryIfNotExists("DK", "Danmark");
+        AddCountryIfNotExists("NO", "Norge");
+    }
+
+    private void AddCountryIfNotExists(string code, string namn)
+    {
+        if (_dbContext.Countries.Any(r => r.CountryCode == code)) return;
+        _dbContext.Countries.Add(new Country {CountryCode = code, Name = namn});
+        _dbContext.SaveChanges();
     }
 
     private void SeedAccounts()
