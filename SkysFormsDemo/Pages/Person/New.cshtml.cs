@@ -60,7 +60,7 @@ namespace SkysFormsDemo.Pages.Person
                     StreetAddress = StreetAddress,
                     Email = Email,
                     City = City,
-                    CountryCode = CountryCode,
+                    //CountryCode = CountryCode, //TODO
                     Salary = Salary,
                     Name = Name,
                     PostalCode = PostalCode,

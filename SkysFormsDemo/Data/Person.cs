@@ -15,8 +15,8 @@ public class Person
     [StringLength(10)]
     public string PostalCode { get; set; }
 
-    [StringLength(2)]
-    public string CountryCode { get; set; }
+    public Country Country { get; set; }
+
     public DateTime Registered { get; set; }
     public DateTime LastModified { get; set; }
 

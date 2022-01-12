@@ -52,7 +52,7 @@ namespace SkysFormsDemo.Pages.Person
             Name = person.Name;
             CarCount = person.CarCount;
             City = person.City;
-            CountryCode = person.CountryCode;
+            CountryCode = "NA";
             Email = person.Email;
             PostalCode = person.PostalCode;
             Salary = person.Salary;
@@ -68,7 +68,8 @@ namespace SkysFormsDemo.Pages.Person
                 person.Name = Name;
                 person.CarCount = CarCount;
                 person.City = City;
-                person.CountryCode = CountryCode;
+                // TODO
+                //person.CountryCode = CountryCode; 
                 person.Email = Email;
                 person.PostalCode = PostalCode;
                 person.Salary = Salary;
