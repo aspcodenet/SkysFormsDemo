@@ -29,4 +29,6 @@ public class Person
     public string City { get; set; }
     [StringLength(150)]
     public string Email { get; set; }
+
+    public List<Car> OwnedCars { get; set; } = new List<Car>();
 }

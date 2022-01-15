@@ -22,4 +22,5 @@ public class ApplicationDbContext : IdentityDbContext
 
     public DbSet<Country> Countries { get; set; }
 
+    public DbSet<Product> Products { get; set; }
 }
