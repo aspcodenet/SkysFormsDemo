@@ -1,4 +1,5 @@
 ﻿@page
+@using Microsoft.EntityFrameworkCore.Metadata.Conventions
 @model IndexModel
 @{
     ViewData["Title"] = "Personer";
@@ -17,8 +18,6 @@
                 <th>Email</th>
                 <th>City</th>
                 <th></th>
-                <th></th>
-                <th></th>
             </tr>
             @foreach (var person in Model.Persons)
             {
@@ -29,54 +28,11 @@
                     <td>
                         <a asp-page="Edit" asp-route-personId="@person.Id"><i class='bx bx-edit'></i></a>
                     </td>
-                    <td>
-                        <a asp-page="View" asp-route-personId="@person.Id">
-                            <i class='bx bxs-user-detail'></i>
-                        </a>
-                    </td>
-                    
-                    <td>
-                        <a href="javascript:fetchInfo(@person.Id)">
-                            <i class='bx bx-info-circle'></i>
-                        </a>
-                    </td>
-                    
                 </tr>
             }
         </table>
         
-        <a class="btn" asp-page="New">Create new</a>
+            <a class="btn" asp-page="New">Create new</a>
 
     </div>
 </div>
-
-
-<div class="card">
-    <div class="card-header">
-        <h1 id="personNamn"></h1>
-    </div>
-    <div class="card-body">
-        <p id="antalBilar"></p>
-    </div>
-</div>
-
-
-@section Scripts
-{
-    <script>
-        function fetchInfo(id) {
-            fetch("/Person?handler=FetchInfo&id=" + id)
-                .then((response) => response.json())
-                .then((json) => {
-                        document.getElementById('personNamn').innerHTML = json.namn;
-                        document.getElementById('antalBilar').innerHTML = json.antalBilar;
-                    }
-            
-                );
-
-
-        }
-    </script>    
-}
-
-

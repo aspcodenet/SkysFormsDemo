@@ -245,47 +245,6 @@ namespace SkysFormsDemo.Migrations
                     b.ToTable("Accounts");
                 });
 
-            modelBuilder.Entity("SkysFormsDemo.Data.Car", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<DateTime>("BoughtDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Fuel")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Manufacturer")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Model")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("PersonId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Vin")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PersonId");
-
-                    b.ToTable("Car");
-                });
-
             modelBuilder.Entity("SkysFormsDemo.Data.Country", b =>
                 {
                     b.Property<int>("Id")
@@ -367,43 +326,6 @@ namespace SkysFormsDemo.Migrations
                     b.ToTable("Person");
                 });
 
-            modelBuilder.Entity("SkysFormsDemo.Data.Product", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Color")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Ean13")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("LastBought")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PopularityPercent")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Products");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -455,13 +377,6 @@ namespace SkysFormsDemo.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("SkysFormsDemo.Data.Car", b =>
-                {
-                    b.HasOne("SkysFormsDemo.Data.Person", null)
-                        .WithMany("OwnedCars")
-                        .HasForeignKey("PersonId");
-                });
-
             modelBuilder.Entity("SkysFormsDemo.Data.Person", b =>
                 {
                     b.HasOne("SkysFormsDemo.Data.Country", "Country")
@@ -471,11 +386,6 @@ namespace SkysFormsDemo.Migrations
                         .IsRequired();
 
                     b.Navigation("Country");
-                });
-
-            modelBuilder.Entity("SkysFormsDemo.Data.Person", b =>
-                {
-                    b.Navigation("OwnedCars");
                 });
 #pragma warning restore 612, 618
         }
